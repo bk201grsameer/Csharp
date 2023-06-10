@@ -1,3 +1,7 @@
+// the whole application will now have the access
+global using projectEf_1.models;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

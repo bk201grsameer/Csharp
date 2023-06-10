@@ -1,3 +1,8 @@
 #get
 ###
 GET https://localhost:8000/WeatherForecast HTTP/1.1
+
+
+#get all characters
+###
+GET https://localhost:8000/api/character HTTP/1.1
