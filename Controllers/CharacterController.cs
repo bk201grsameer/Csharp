@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
+using projectEf_1.Services.CharacterService;
 
 namespace projectEf_1.Controllers
 {
@@ -12,25 +12,28 @@ namespace projectEf_1.Controllers
     [Route("api/[controller]")] //api/CharacterController
     public class CharacterController : ControllerBase
     {
-        public static List<Character> characters = new List<Character>{
-            new Character(),
-            new Character{Id=1,Name="Sam"},
-            new Character{Id=2,Name="pali"}
-        };
+        private readonly ICharacterService characterService;
+
+        public CharacterController(ICharacterService characterService)
+        {
+            //character service injected inside the CharacterController 
+            this.characterService = characterService;
+        }
+
 
         //routes
         [HttpGet]
         [Route("GetAll")]
         public ActionResult<List<Character>> Get()
         {
-            return Ok(characters);
+            return Ok(characterService.get_All_Character());
         }
 
         //get with parameter //via url
         [HttpGet("{id}")]
         public ActionResult<Character> GetSingle(int id) //this will work as the parameter
         {
-            return Ok(characters.FirstOrDefault(c => c.Id == id));
+            return Ok(characterService.get_Character_By_Id(id));
         }
 
 
@@ -39,9 +42,8 @@ namespace projectEf_1.Controllers
         [Route("adduser")]
         public ActionResult<List<Character>> AddCharacter(Character obj) //the body will be 
         {
-            characters.Add(obj);
-            return Ok(characters);
+            return Ok(characterService.add_Character(obj));
         }
-        
+
     }
 }
