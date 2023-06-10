@@ -12,8 +12,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+
 //now the web api service knows it has to use characterservice class whenever it wants to inject Icharacter service
 builder.Services.AddScoped<ICharacterService, CharacterService>();
+// regiser  automapper
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 

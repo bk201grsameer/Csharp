@@ -1,13 +1,21 @@
 #get
 ###
 GET https://localhost:8000/WeatherForecast HTTP/1.1
-
-
 #get all characters
+
 ###
 GET https://localhost:8000/api/character/getall HTTP/1.1
-
-
 #get single character
+
 ###
-GET https://localhost:8000/api/character/2 HTTP/1.1
+GET https://localhost:8000/api/character/1 HTTP/1.1
+
+
+# add data
+###
+POST https://localhost:8000/api/Character/adduser HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"kosf_II"
+}
